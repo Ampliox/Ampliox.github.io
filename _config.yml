@@ -1,10 +1,10 @@
-title: Jekyll Serial Programmer
+title: Andres Samper
 markdown: kramdown
 
 # for atom feed
 author:
-  name: Sharad Raj Singh Maurya
-  email: dev_sharad@outlook.com
+  name: Andres Samper
+  email: asamper2020@gmail.com
 
 plugins:
   - jemoji
