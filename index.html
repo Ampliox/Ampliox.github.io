@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reputation Checker</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-image: url("coolBG2.png");
+			background-size: cover;
+		}
+
+		.container {
+			gap: 20px; <!-- 3em (fixes the last column) -->
+			max-width: 600px;
+			min-width: 50px;
+			margin-left:0px;
+			margin-right 10;
+			display: flex;
+			justify-content: center;
+
+		}
+
+		.mainCategory {
+			border: 0px solid #ccc;
+			padding: 10px;
+		}
+
+		.mainOptionsContainer {
+			gap: 20px; <!-- 3em (fixes the last column) -->
+			max-width: 600px;
+			min-width: 50px;
+			margin-left:0px;
+			margin-right 10;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start; <!-- remove this to have all boxes the same size -->
+			<!-- flex-wrap: wrap; remove this line to get rid of wrapping -->
+		}
+
+		.optionsContainer {
+			gap: 20px; <!-- 3em (fixes the last column) -->
+			max-width: 600px;
+			min-width: 50px;
+			margin-left:0px;
+			margin-right 10;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start; <!-- remove this to have all boxes the same size -->
+			<!-- flex-wrap: wrap; remove this line to get rid of wrapping -->
+		}
+
+		br {display:block;margin: 10px 0;}
+
+        p {color:white;}
+
+		button {margin-bottom:0.5px;}
+
+		.category {
+			border: 3px solid #ff4242;
+			background-color: #E5E4E2E0;
+			padding: 10px;
+			margin-left:0;
+			border-radius: 5px;
+			min-width: 175px;
+		}
+
+		.categoryExtra {
+			border:3px solid #10a7ff;
+			background-color: #E5E4E2E0;
+			padding: 10px;
+			border-radius: 5px;
+			min-width: 175px;
+		}
+
+		.category h3 {
+
+			margin-top: 0;
+			margin-right: 1000px;
+			display: flex;
+		}
+		.checkbox-group{
+			margin-bottom: 10px;
+			margin-right: 0px;
+		}
+
+		.label {
+			flex-grow:1;
+			margin-left: 0px;
+		}
+
+		.checkbox-container {
+			margin-right: 10px;
+		}
+
+		.references {
+			display: grid;
+			padding-top: 10px;
+			grid-gap:10px;
+			padding: 10px 20px;
+			margin-right: 100px;
+		}
+
+		.refcontainer {
+			//display: flex;
+			display: grid;
+			justify-content: flex-end;
+			grid-gap:10px;
+			min-width: 20px;
+
+
+		}
+
+		textarea {
+
+		}
+
+
+	</style>
+</head>
+<!--Created by the SOC to aid in faster gathering of Threat Intelligence-->
+<!--TO DO: Usernames, IPs, Domains, Emails, Addresses, Names, Breaches and Leaks-->
+<!--Updated 1/13/25-->
+<!--I might of broke it-->
+<!--Update 2/22/25: you did not close a function with ) around line 320 :( -->
+<!--Site works now-->
+<body>
+	<form id="siteForm">
+		<div class="container">
+			<div class="mainCategory">
+			<p><b>Supported Formats: IPv4, URLs, SHA-1, SHA-256, MD5</b></p>
+			<p for="inputData">Enter URLs, IP adresses, or hashes (Comma Seperated):</p>
+			<textarea id="inputData" rows="6" cols="55"></textarea><br><br>
+			<button type="button" id="openSites">Get Results</button>
+			<button type="button" onclick="unCheckAll()">Clear Checkboxes</button>
+			<button type="button" onclick="goPhish()">Phish</button>
+			<button type="button" onclick="favorites()">Favorites</button>
+			<button type="button" onclick="favoritesplus()">Favorites+</button>
+			</div>
+
+
+		<div class="container">
+			<div class="categoryExtra">
+				<h3>Additional Tools</h3>
+				<button onclick="window.open('https://radar.cloudflare.com/scan', '_blank')">CloudFlare Radar</button>
+				<button onclick="window.open('https://urlquery.net', '_blank')">URL Query</button>
+				<button onclick="window.open('https://www.whatweb.net/', '_blank')">WhatWeb</button>
+				<button onclick="window.open('https://sslbl.abuse.ch/ja3-fingerprints/', '_blank')">JA3 Fingerprints</button>
+				<button onclick="window.open('https://centralops.net/co/', '_blank')">Central Ops</button>
+				<button onclick="window.open('https://urlscan.io/', '_blank')">URLScan</button>
+				<button onclick="window.open('https://inteltechniques.com/tools/')">IntelTechniques</button>
+				<button onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')">DO NOT CLICK</button>
+
+				<br></br>
+
+				<h3>References</h3>
+				<button onclick="window.open('https://gtfobins.github.io/', '_blank')">GTFOBins</button>
+				<button onclick="window.open('https://lolbas-project.github.io/', '_blank')">LOLBins</button>
+				<button onclick="window.open('https://wtfbins.wtf/', '_blank')">WTFbins</button>
+				<button onclick="window.open('https://hijacklibs.net/', '_blank')">HijackLibs</button>
+				<button onclick="window.open('https://www.exploit-db.com/', '_blank')">ExploitDB</button>
+				<button onclick="window.open('https://threathunterplaybook.com/intro.html', '_blank')">Threat Hunter</button>
+				<button onclick="window.open('http://ref.x86asm.net/coder32.html', '_blank')">x86 ASM Ref</button>
+				<button onclick="window.open('https://aadinternals.com/osint/', '_blank')">AADInternals</button>
+				<button onclick="window.open('https://book.hacktricks.wiki/en/index.html', '_blank')">HackTricks</button>
+			</div>
+		</div>
+	</div>
+
+	<br></br>
+
+	<div class="mainOptionsContainer">
+
+		<div class="optionsContainer">
+			<div class="category">
+				<label><b>URLs</b></label>
+				<div class="checkbox-group">
+				<br><br>
+				<input type="checkbox" name="site" id="site1" class="label"></input>
+				<label for="site1" width=100px >VirusTotal</label>
+				<br><br>
+				<input type="checkbox" name="site2" id="site2" class="label"></input>
+				<label for="site2">IBM X-Force</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site3" class="label"></input>
+				<label for="site3">AlienVault</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site4" class="label"></input>
+				<label for="site4">Talos Intelligence</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site23" class="label"></input>
+				<label for="site23">ThreatFox IOCs</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site24" class="label"></input>
+				<label for="site24">Web Check</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site26" class="label"></input>
+				<label for="site26">Wayback Machine</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site29" class="label"></input>
+				<label for="site29">ScamAdvisor</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site30" class="label"></input>
+				<label for="site30">Norton Safeweb</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site31" class="label"></input>
+				<label for="site31">Crt.sh</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site32" class="label"></input>
+				<label for="site32">BuiltWith</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site33" class="label"></input>
+				<label for="site33">Whoxy</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site34" class="label"></input>
+				<label for="site34">Sucuri</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="optionsContainer">
+			<div class="category">
+				<label><b>IPs</b></label>
+				<div class="checkbox-group">
+				<br><br>
+				<input type="checkbox" name="site" id="site5" class="label"></input>
+				<label for="site5">VirusTotal</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site6" class="label"></input>
+				<label for="site6">AbuseIPDB</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site7" class="label"></input>
+				<label for="site7">Spur</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site11" class="label"></input>
+				<label for="site11">WHOIS</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site12" class="label"></input>
+				<label for="site12">Scamalytics</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site13" class="label"></input>
+				<label for="site13">AlienVault</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site14" class="label"></input>
+				<label for="site14">Shodan</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site15" class="label"></input>
+				<label for="site15">IBM X-Force</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site16" class="label"></input>
+				<label for="site16">Project Honeypot</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site17" class="label"></input>
+				<label for="site17">Censys</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site18" class="label"></input>
+				<label for="site18">SpamCop</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site19" class="label"></input>
+				<label for="site19">MX-Toolbox Blacklist</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site20" class="label"></input>
+				<label for="site20">GreyNoise</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site25" class="label"></input>
+				<label for="site25">Talos Intelligence</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site27" class="label"></input>
+				<label for="site27">SpamHaus</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site28" class="label"></input>
+				<label for="site28">ThreatFox IOCs</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="optionsContainer">
+			<div class="category">
+				<label><b>Hashes</b></label>
+				<div class="checkbox-group">
+				<br><br>
+				<input type="checkbox" name="site" id="site8" class="label"></input>
+				<label for="site8">VirusTotal</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site9" class="label"></input>
+				<label for="site9">IBM X-Force</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site10" class="label"></input>
+				<label for="site10">AlienVault</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site21" class="label"></input>
+				<label for="site21">ThreatFox IOCs</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site22" class="label"></input>
+				<label for="site22">Joe's Sandbox</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="optionsContainer">
+			<div class="category">
+				<label><b>Email Addresses</b></label>
+				<div class="checkbox-group" >
+				<br><br>
+				<input type="checkbox" name="site" id="site35" class="label"></input>
+				<label for="site35">HudsonRock</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site36" class="label"></input>
+				<label for="site36">PasteLeakCheck</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site37" class="label"></input>
+				<label for="site37">IntelligenceX</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site38" class="label"></input>
+				<label for="site38">CleanTalk</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site39" class="label"></input>
+				<label for="site39">LeakIX</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site40" class="label"></input>
+				<label for="site40">HunterIO</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site41" class="label"></input>
+				<label for="site41">OCCRP</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site42" class="label"></input>
+				<label for="site42">Whoisology</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site43" class="label"></input>
+				<label for="site43">Whoxy</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="optionsContainer">
+			<div class="category">
+				<label><b>Phone Numbers</b></label>
+				<div class="checkbox-group" >
+				<br><br>
+				<input type="checkbox" name="site" id="site44" class="label"></input>
+				<label for="site44">AdvBackgroundCheck</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site45" class="label"></input>
+				<label for="site45">CyberBckGrdCheck</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site46" class="label"></input>
+				<label for="site46">InfoTracer</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site47" class="label"></input>
+				<label for="site47">TruePeopleSearch</label>
+				<br><br>
+				<input type="checkbox" name="site" id="site48" class="label"></input>
+				<label for="site48">WhitePages</label>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+
+	</form>
+	<script>
+		function checkInputType(input){
+			const trimmedInput = input.trim();
+
+			const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/i; //HTTP/s or Domain
+			const ipPattern = /^^(?:\d{1,3}\.){3}\d{1,3}$/; //IPv4
+			const hashPattern = /^[a-fA-F0-9]{32}$|^[a-fA-F0-9]{40}$|^[a-fA-F0-9]{64}$/; // MD5, SHA-1, SHA-256
+			const emailPattern = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/; //Emails
+			const phonePattern = /(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/g;
+
+
+			if(urlPattern.test(trimmedInput)){
+				return 'URL';
+			}
+			else if (ipPattern.test(trimmedInput)){
+				const octet = trimmedInput.split('.').map(Number);
+				const isValidIP = octet.every(octet => octet >= 0 && octet <= 255);
+				return 'IP';
+			} else if (hashPattern.test(trimmedInput)) {
+				return 'Hash';
+			} else if (emailPattern.test(trimmedInput)){
+				return 'Email';
+			} else if (phonePattern.test(trimmedInput)) {
+				return 'Phone';
+			}
+			else {
+				return 'Error';
+			}
+
+
+		}
+
+		function unCheckAll() {
+			const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+			checkboxes.forEach(checkbox => checkbox.checked = false);
+		}
+
+		function redirect(val) {
+			window.location.href = val;
+		}
+
+		function goPhish() {
+			unCheckAll()
+			//URLs
+			document.getElementById('site1').checked=true;
+			document.getElementById('site2').checked=true;
+			document.getElementById('site4').checked=true;
+			//IPs
+			document.getElementById('site6').checked=true;
+			document.getElementById('site25').checked=true;
+			document.getElementById('site19').checked=true;
+
+			fetchReputation()
+		}
+
+		function favorites() {
+			unCheckAll()
+			//URLs
+			document.getElementById('site1').checked=true;
+			document.getElementById('site2').checked=true;
+			document.getElementById('site3').checked=true;
+			document.getElementById('site4').checked=true;
+			//IPs
+			document.getElementById('site6').checked=true;
+			document.getElementById('site5').checked=true;
+			document.getElementById('site15').checked=true;
+			document.getElementById('site25').checked=true;
+			//Hashes
+			document.getElementById('site8').checked=true;
+			document.getElementById('site9').checked=true;
+			document.getElementById('site10').checked=true;
+			//Emails
+			document.getElementById('site35').checked=true;
+			document.getElementById('site42').checked=true;
+			//Phone Numbers
+			document.getElementById('site45').checked=true;
+			document.getElementById('site47').checked=true;
+			fetchReputation()
+		}
+
+		function favoritesplus() {
+			unCheckAll()
+			//URLs
+			document.getElementById('site1').checked=true;
+			document.getElementById('site2').checked=true;
+			document.getElementById('site3').checked=true;
+			document.getElementById('site4').checked=true;
+			document.getElementById('site23').checked=true;
+			document.getElementById('site24').checked=true;
+			document.getElementById('site29').checked=true;
+			document.getElementById('site30').checked=true;
+			document.getElementById('site33').checked=true;
+			document.getElementById('site34').checked=true;
+			//IPs
+			document.getElementById('site6').checked=true;
+			document.getElementById('site5').checked=true;
+			document.getElementById('site15').checked=true;
+			document.getElementById('site25').checked=true;
+			document.getElementById('site7').checked=true;
+			document.getElementById('site12').checked=true;
+			document.getElementById('site13').checked=true;
+			document.getElementById('site16').checked=true;
+			document.getElementById('site17').checked=true;
+			document.getElementById('site18').checked=true;
+			document.getElementById('site19').checked=true;
+			document.getElementById('site20').checked=true;
+			document.getElementById('site27').checked=true;
+			document.getElementById('site28').checked=true;
+			//Hashes
+			document.getElementById('site8').checked=true;
+			document.getElementById('site9').checked=true;
+			document.getElementById('site10').checked=true;
+			document.getElementById('site21').checked=true;
+			document.getElementById('site22').checked=true;
+			//Emails
+			document.getElementById('site35').checked=true;
+			document.getElementById('site36').checked=true;
+			document.getElementById('site37').checked=true;
+			document.getElementById('site38').checked=true;
+			document.getElementById('site39').checked=true;
+			document.getElementById('site40').checked=true;
+			document.getElementById('site41').checked=true;
+			document.getElementById('site42').checked=true;
+			document.getElementById('site43').checked=true;
+			document.getElementById('site44').checked=true;
+			document.getElementById('site45').checked=true;
+
+
+			fetchReputation()
+		}
+
+		function fetchReputation() {
+			const inputData = document.getElementById('inputData').value;
+			const items = inputData.split(',');
+
+			items.forEach(item => {
+				const category = checkInputType(item);
+				const trimmedItem = item.trim();
+
+				switch (category) {
+					case 'URL':
+						url = trimmedItem;
+						url = url.replace(/^https?:\/\//, '');
+						if (document.getElementById("site1").checked) {
+							const url2OpenVT = 'https://www.virustotal.com/gui/domain/' + url;
+							window.open(url2OpenVT, '_blank');
+						}
+						if (document.getElementById("site2").checked) {
+							const url2OpenXForce = 'https://exchange.xforce.ibmcloud.com/url/' + url;
+							window.open(url2OpenXForce, '_blank');
+						}
+						if (document.getElementById("site3").checked) {
+							const url2OpenAlienVault = 'https://otx.alienvault.com/indicator/domain/' + url;
+							window.open(url2OpenAlienVault, '_blank');
+						}
+						if (document.getElementById("site4").checked) {
+							const url2OpenTalos = 'https://www.talosintelligence.com/reputation_center/lookup?search=' + url;
+							window.open(url2OpenTalos, '_blank');
+						}
+						if (document.getElementById("site23").checked) {
+							const url2OpenThreatFox = 'https://threatfox.abuse.ch/browse.php?search=' + url;
+							window.open(url2OpenThreatFox, '_blank');
+						}
+						if (document.getElementById("site24").checked) {
+							const url2OpenWebCheck = 'https://web-check.as93.net/check/https%3A%2F%2F' + url;
+							window.open(url2OpenWebCheck, '_blank');
+						}
+						if (document.getElementById("site26").checked) {
+							const url2OpenWayback = 'https://web.archive.org/web/20240000000000*/' + url;
+							window.open(url2OpenWayback, '_blank');
+						}
+						if (document.getElementById("site29").checked) {
+							const url2OpenScam = 'https://www.scamadviser.com/check-website/' + url;
+							window.open(url2OpenScam, '_blank');
+						}
+						if (document.getElementById("site30").checked) {
+							const url2OpenNorton = 'https://safeweb.norton.com/report?url=' + url;
+							window.open(url2OpenNorton, '_blank');
+						}
+						if (document.getElementById("site31").checked) {
+							const url2OpenBuiltWith = 'https://builtwith.com/?q=' + url;
+							window.open(url2OpenBuiltWith, '_blank');
+						}
+						if (document.getElementById("site32").checked) {
+							const url2OpenCrt = 'https://crt.sh/?q=' + url;
+							window.open(url2OpenCrt, '_blank');
+						}
+						if (document.getElementById("site33").checked) {
+							const url2Whoxy = 'https://www.whoxy.com/' + url;
+							window.open(url2OpenCrt, '_blank');
+						}
+						if (document.getElementById("site34").checked) {
+							const url2Whoxy = 'https://sitecheck.sucuri.net/results/' + url;
+							window.open(url2OpenCrt, '_blank');
+						}
+						break;
+					case 'IP':
+						ip = trimmedItem;
+						if (document.getElementById("site5").checked) {
+							const ip2OpenVT = 'https://www.virustotal.com/gui/ip-address/' + ip;
+							window.open(ip2OpenVT, '_blank');
+						}
+						if (document.getElementById("site6").checked) {
+							const ip2OpenIPDB = 'https://www.abuseipdb.com/check/' + ip;
+							window.open(ip2OpenIPDB, '_blank');
+						}
+						if (document.getElementById("site7").checked) {
+							const ip2OpenSpur = 'https://app.spur.us/context?q=' + ip;
+							window.open(ip2OpenSpur, '_blank');
+						}
+						if (document.getElementById("site11").checked) {
+							const ip2OpenWHOIS = 'https://search.arin.net/rdap/?query=' + ip;
+							window.open(ip2OpenWHOIS, '_blank');
+						}
+						if (document.getElementById("site12").checked) {
+							const ip2OpenScamalytics = 'https://scamalytics.com/ip/' + ip;
+							window.open(ip2OpenScamalytics, '_blank');
+						}
+						if (document.getElementById("site13").checked) {
+							const ip2OpenAlienVault = 'https://otx.alienvault.com/indicator/ip/' + ip;
+							window.open(ip2OpenAlienVault, '_blank');
+						}
+						if (document.getElementById("site14").checked) {
+							const ip2OpenShodan = 'https://www.shodan.io/search?query=' + ip + '&ref=os';
+							window.open(ip2OpenShodan, '_blank');
+						}
+						if (document.getElementById("site15").checked) {
+							const ip2OpenXForce = 'https://exchange.xforce.ibmcloud.com/ip/' + ip;
+							window.open(ip2OpenXForce, '_blank');
+						}
+						if (document.getElementById("site16").checked) {
+							const ip2OpenHoneyPot = 'https://www.projecthoneypot.org/ip_' + ip;
+							window.open(ip2OpenHoneyPot, '_blank');
+						}
+						if (document.getElementById("site17").checked) {
+							const ip2OpenCensys = 'https://search.censys.io/search?resource=hosts&q=' + ip;
+							window.open(ip2OpenCensys, '_blank');
+						}
+						if (document.getElementById("site18").checked) {
+							const ip2OpenSpamCop = 'https://www.spamcop.net/w3m?action=checkblock&ip=' + ip;
+							window.open(ip2OpenSpamCop, '_blank');
+						}
+						if (document.getElementById("site19").checked) {
+							const ip2OpenMXBlackList = 'https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' + ip + '&run=toolpage';
+							window.open(ip2OpenMXBlackList, '_blank');
+						}
+						if (document.getElementById("site20").checked) {
+							const ip2OpenGreyNoise = 'https://viz.greynoise.io/ip/' + ip;
+							window.open(ip2OpenGreyNoise, '_blank');
+						}
+						if (document.getElementById("site25").checked) {
+							const ip2OpenTalos = 'https://www.talosintelligence.com/reputation_center/lookup?search=' + ip;
+							window.open(ip2OpenTalos, '_blank');
+						}
+						if (document.getElementById("site27").checked) {
+							const ip2OpenSpamHaus = 'https://check.spamhaus.org/results/?query=' + ip;
+							window.open(ip2OpenSpamHaus, '_blank');
+						}
+						if (document.getElementById("site28").checked) {
+							const ip2OpenFox = 'https://threatfox.abuse.ch/browse.php?search=' + ip;
+							window.open(ip2OpenFox, '_blank');
+						}
+						break;
+					case 'Hash':
+						hash = trimmedItem;
+						if (document.getElementById("site8").checked) {
+							const hash2OpenVT = 'https://www.virustotal.com/gui/file/' + hash;
+							window.open(hash2OpenVT, '_blank');
+						}
+						if (document.getElementById("site9").checked) {
+							const hash2OpenXForce = 'https://exchange.xforce.ibmcloud.com/malware/' + hash;
+							window.open(hash2OpenXForce, '_blank');
+						}
+						if (document.getElementById("site10").checked) {
+							const hash2OpenAlienVault = 'https://otx.alienvault.com/indicator/file/' + hash;
+							window.open(hash2OpenAlienVault, '_blank');
+						}
+						if (document.getElementById("site21").checked) {
+							const hash2OpenTFox = 'https://threatfox.abuse.ch/browse.php?search=' + hash;
+							window.open(hash2OpenTFox, '_blank');
+						}
+						if (document.getElementById("site22").checked) {
+							const hash2OpenJoeBox = 'https://www.joesandbox.com/search?q=' + hash;
+							window.open(hash2OpenJoeBox, '_blank');
+						}
+						break;
+					case 'Email':
+						email = trimmedItem;
+						if (document.getElementById("site35").checked) {
+							const email2OpenHudson = 'https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email=' + email;
+							window.open(email2OpenHudson, '_blank');
+						}
+						if (document.getElementById("site36").checked) {
+							const email2OpenPasteLeakCheck = 'https://psbdmp.ws/api/search/' + email;
+							window.open(email2OpenPasteLeakCheck, '_blank');
+						}
+						if (document.getElementById("site37").checked) {
+							const email2openIntelligenceX = 'https://intelx.io/?s=' + email;
+							window.open(email2openIntelligenceX, '_blank');
+						}
+						if (document.getElementById("site38").checked) {
+							const email2openCleanTalk = 'https://cleantalk.org/email-checker/' + email;
+							window.open(email2openCleanTalk, '_blank');
+						}
+						if (document.getElementById("site39").checked) {
+							const email2openLeak4 = 'https://leakix.net/search?scope=leak&q=%22' + email;
+							window.open(email2openLeak4, '_blank');
+						}
+						if (document.getElementById("site40").checked) {
+							const email2OpenHunterIO = 'https://hunter.io/email-verifier/' + email;
+							window.open(email2OpenHunterIO, '_blank');
+						}
+						if (document.getElementById("site41").checked) {
+							const email2openOCCRP = 'https://data.occrp.org/search?q=' + email;
+							window.open(email2openOCCRP, '_blank');
+						}
+						if (document.getElementById("site42").checked) {
+							const email2openWhoisology = 'https://whoisology.com/email/' + email;
+							window.open(email2openWhoisology, '_blank');
+						}
+						if (document.getElementById("site43").checked) {
+							const email2openwhoxy = 'https://www.whoxy.com/search.php?email=' + email;
+							window.open(email2openwhoxy, '_blank');
+						}
+						if (document.getElementById("site44").checked) {
+							const email2openThatsthem = 'https://thatsthem.com/email/' + email;
+							window.open(email2openThatsthem, '_blank');
+						}
+						if (document.getElementById("site45").checked) {
+							const email2opentruepeople = 'https://www.truepeoplesearch.com/resultemail?email=' + email;
+							window.open(email2opentruepeople, '_blank');
+						}
+						break;
+					case 'Phone':
+						phone = trimmedItem;
+
+						if (document.getElementById("site44").checked) {
+							const phone2OpenAdvBackgroundCheck = 'https://www.advancedbackgroundchecks.com/' + phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
+							window.open(phone2OpenAdvBackgroundCheck, '_blank');
+						}
+						if (document.getElementById("site45").checked) {
+							const phone2OpenCyber = 'https://www.cyberbackgroundchecks.com/phone/' + phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
+							window.open(phone2OpenCyber, '_blank');
+						}
+						if (document.getElementById("site46").checked) {
+							const phone2OpenInfoTracer = 'https://infotracer.com/phone-lookup/results/?phone=' + phone;
+							window.open(phone2OpenInfoTracer, '_blank');
+						}
+						if (document.getElementById("site47").checked) {
+							const phone2OpenTruePeople = 'https://www.truepeoplesearch.com/results?phoneno=' + phone;
+							window.open(phone2OpenTruePeople, '_blank');
+						}
+						if (document.getElementById("site48").checked) {
+							const phone2OpenWhitePages = 'https://www.whitepages.com/phone/1-' + phone;
+							window.open(phone2OpenWhitePages, '_blank');
+						}
+						break;
+					default:
+						alert('Invalid data type:' + trimmedItem);
+						break;
+			}
+			});
+		}
+		window.onload = function() {
+		document.getElementById('openSites').addEventListener('click', fetchReputation);
+		}
+	</script>
+</body>
