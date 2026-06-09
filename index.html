@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <script type="application/ld+json">
   {
@@ -44,14 +44,14 @@
   <!-- ===================== TOP BAR ===================== -->
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#top">Andres Samper</a>
+      <a class="brand" href="/">Andres Samper</a>
       <nav class="nav">
-        <a href="#experience">Experience</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a class="button" href="assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a href="/" class="current">About</a>
+        <a href="/experience/">Experience</a>
+        <a href="/certifications/">Certifications</a>
+        <a href="/skills/">Skills</a>
+        <a href="/background/">Background</a>
+        <a class="button" href="/assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
       </nav>
     </div>
   </header>
@@ -74,13 +74,13 @@
           You can reach me by <a href="mailto:asamper2020@gmail.com">email</a>, or find me
           on <a href="https://www.linkedin.com/in/andres-samper/" target="_blank" rel="noopener">LinkedIn</a>
           and <a href="https://github.com/Ampliox" target="_blank" rel="noopener">GitHub</a>.
-          My <a href="assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">résumé</a>
+          My <a href="/assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">résumé</a>
           is also available.
         </p>
       </div>
 
       <div class="portrait">
-        <img src="assets/img/portrait.jpg" alt="Andres Samper" onerror="this.style.display='none'" />
+        <img src="/assets/img/portrait.jpg" alt="Andres Samper" onerror="this.style.display='none'" />
         <div class="portrait-ph" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg>
           <span>Portrait</span>
@@ -97,147 +97,6 @@
       <div class="terminal-body" id="term"></div>
     </div>
 
-    <!-- ===================== EXPERIENCE ===================== -->
-    <section id="experience">
-      <h2 class="section-header">Experience</h2>
-      <ul class="entries">
-        <li>
-          <div class="entry-head">
-            <span class="entry-when">Nov 2025 – Present</span>
-            <div class="entry-title">Offensive Security Consultant</div>
-            <div class="entry-meta">HALOCK Security Labs &middot; Remote</div>
-          </div>
-          <p>
-            Conducting full-scope penetration tests across networks, web applications, IoT,
-            wireless systems, and cloud environments, and leading development of an AI-driven
-            penetration testing platform for a new continuous-testing service offering.
-          </p>
-          <ul class="bullets">
-            <li>Produce professional penetration testing reports with evidence, severity ratings, risk summaries, and validated findings.</li>
-            <li>Deliver clear, actionable remediation guidance aligned with business risk.</li>
-          </ul>
-        </li>
-        <li>
-          <div class="entry-head">
-            <span class="entry-when">Mar 2024 – Nov 2025</span>
-            <div class="entry-title">Security Operations Center Analyst Intern</div>
-            <div class="entry-meta">Geographic Solutions &middot; Palm Harbor, FL</div>
-          </div>
-          <p>
-            Triaged security incidents using SIEM, EDR, and SOAR tooling with an average
-            investigation time under 25 minutes, and helped mature the team's detection and
-            response practices.
-          </p>
-          <ul class="bullets">
-            <li>Tuned SIEM detection logic to reduce the false-positive rate by 32%.</li>
-            <li>Authored Standard Operating Procedure (SOP) documentation for future InfoSec personnel.</li>
-            <li>Performed forensic analysis and artifact gathering on quarantined devices; monitored firewall logs to reduce bot activity.</li>
-            <li>Trained new hires on CrowdStrike EDR, Microsoft Defender, and Elastic Search.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ===================== CERTIFICATIONS ===================== -->
-    <section id="certifications">
-      <h2 class="section-header">Certifications</h2>
-      <ul class="certs">
-        <li><b>OSCP</b> — Offensive Security Certified Professional</li>
-        <li><b>HTB CPTS</b> — Hack The Box Certified Penetration Testing Specialist</li>
-        <li><b>TCM PIPA</b> — Practical IoT Pentest Associate</li>
-        <li><b>CompTIA Security+</b></li>
-        <li><b>Rapid7 InsightVM</b> — Certified Administrator</li>
-      </ul>
-    </section>
-
-    <!-- ===================== SKILLS ===================== -->
-    <section id="skills">
-      <h2 class="section-header">Skills &amp; Tooling</h2>
-      <dl class="deflist">
-        <div class="row">
-          <dt>Offensive</dt>
-          <dd>Active Directory enumeration &amp; attacks, Windows &amp; Linux privilege escalation, web application pentesting, OWASP Top 10 exploitation, red teaming, tool development, risk reporting.</dd>
-        </div>
-        <div class="row">
-          <dt>Defensive</dt>
-          <dd>Incident response, SIEM operations, network traffic analysis, log analysis, vulnerability management, digital forensics.</dd>
-        </div>
-        <div class="row">
-          <dt>Tooling</dt>
-          <dd>Impacket, BloodHound, PowerView, Metasploit, Burp Suite, Nessus, CrowdStrike EDR, Microsoft Defender &amp; Sentinel, Cisco FMC, Elastic Search, InsightVM, Qualys.</dd>
-        </div>
-        <div class="row">
-          <dt>Programming</dt>
-          <dd>Python, Bash, PowerShell.</dd>
-        </div>
-      </dl>
-    </section>
-
-    <!-- ===================== PROJECTS ===================== -->
-    <section id="projects">
-      <h2 class="section-header">Projects</h2>
-      <ul class="entries">
-        <li>
-          <div class="entry-head">
-            <span class="entry-when">2024</span>
-            <div class="entry-title">
-              <a href="https://github.com/Ampliox" target="_blank" rel="noopener">Reputation Checker</a>
-            </div>
-            <div class="entry-meta">OSINT tool &middot; Python</div>
-          </div>
-          <p>
-            An OSINT tool for online-reputation gathering across IPs, URLs, file hashes, email
-            addresses, and phone numbers. Regular expressions classify each input and route it
-            to the appropriate reputation database — VirusTotal, Cisco Talos, IBM X-Force, and
-            others — so an analyst can move from raw indicator to verdict quickly.
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ===================== COMPETITION & EDUCATION ===================== -->
-    <section id="background">
-      <h2 class="section-header">Competition &amp; Education</h2>
-      <ul class="entries">
-        <li>
-          <div class="entry-head">
-            <span class="entry-when">2025 – 2026</span>
-            <div class="entry-title">USF CyberHerd — Competition Team Member</div>
-            <div class="entry-meta">Nationally ranked collegiate CTF team</div>
-          </div>
-          <p>
-            Competing in national collegiate cybersecurity competitions — capture-the-flag
-            events, penetration testing, and red-team exercises spanning network security,
-            offensive tactics, and threat mitigation.
-          </p>
-        </li>
-        <li>
-          <div class="entry-head">
-            <span class="entry-when">Dec 2025</span>
-            <div class="entry-title">B.S. in Cybersecurity</div>
-            <div class="entry-meta">University of South Florida</div>
-          </div>
-          <p>
-            A foundation across offensive and defensive disciplines, secure systems, and
-            applied security operations.
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ===================== CONTACT ===================== -->
-    <section id="contact">
-      <h2 class="section-header">Contact</h2>
-      <p>
-        The best way to reach me is by email at
-        <a href="mailto:asamper2020@gmail.com">asamper2020@gmail.com</a>. I am also on
-        <a href="https://www.linkedin.com/in/andres-samper/" target="_blank" rel="noopener">LinkedIn</a>
-        and <a href="https://github.com/Ampliox" target="_blank" rel="noopener">GitHub</a>, and my
-        <a href="assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">résumé</a> is
-        available as a PDF.
-      </p>
-    </section>
-
   </main>
 
   <footer class="footer">
@@ -249,6 +108,6 @@
     </span>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

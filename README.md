@@ -8,14 +8,21 @@ Static site (HTML / CSS / vanilla JS), no build step, served via GitHub Pages at
 ## Structure
 
 ```
-index.html              # single-page portfolio
-404.html                # custom not-found page
-assets/css/style.css    # all styling — "Phosphor" dark/terminal theme
-assets/js/main.js       # terminal animation, scroll reveals, nav state
+index.html               # About (intro + simulated terminal)
+experience/index.html    # /experience
+certifications/index.html# /certifications
+skills/index.html        # /skills
+background/index.html    # /background  (Competition & Education)
+404.html                 # custom not-found page
+assets/css/style.css     # all styling — plain academic theme
+assets/js/main.js        # simulated terminal (About page only)
 assets/Andres_Samper_Resume.pdf
-CNAME                   # andressamper.com
-.nojekyll               # serve files as-is (no Jekyll processing)
+CNAME                    # andressamper.com
+.nojekyll                # serve files as-is (no Jekyll processing)
 ```
+
+Each section is its own page sharing one top-bar nav and stylesheet.
+Links use root-absolute paths so they resolve from any subdirectory.
 
 ## Local preview
 

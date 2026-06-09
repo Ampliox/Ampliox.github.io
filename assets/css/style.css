@@ -79,6 +79,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
 .nav { display: flex; align-items: baseline; gap: 1.1em; flex-wrap: wrap; font-size: 1.02em; }
 .nav a { text-decoration: none; }
 .nav a:hover { text-decoration: underline; }
+.nav a.current { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 .nav .button { text-decoration: none; }
 
 /* ---------- Maroon button ---------- */
@@ -105,7 +106,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
 }
 .intro-body .role { color: var(--muted); font-style: italic; margin: 0 0 .8em; }
 .portrait {
-  flex: 0 0 auto; width: 150px; aspect-ratio: 4 / 5;
+  flex: 0 0 auto; width: 180px; aspect-ratio: 4 / 5;
   border: 1px solid var(--rule-strong); border-radius: 4px; overflow: hidden;
   background: #f3f3f3; position: relative;
   box-shadow: 0 0 12px rgba(0,0,0,.06);
@@ -203,6 +204,6 @@ section { margin-top: 2.2em; scroll-margin-top: 4.5em; }
    ===================================================================== */
 @media (max-width: 32em) {
   .intro { flex-direction: column-reverse; align-items: flex-start; }
-  .portrait { width: 130px; }
+  .portrait { width: 156px; }
   .entry-when { float: none; display: block; margin: 0 0 .2em; }
 }
