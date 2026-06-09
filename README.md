@@ -11,7 +11,6 @@ Static site (HTML / CSS / vanilla JS), no build step, served via GitHub Pages at
 index.html               # About (intro + simulated terminal)
 experience/index.html    # /experience
 certifications/index.html# /certifications
-skills/index.html        # /skills
 background/index.html    # /background  (Competition & Education)
 404.html                 # custom not-found page
 assets/css/style.css     # all styling — plain academic theme

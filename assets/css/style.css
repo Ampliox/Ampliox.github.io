@@ -98,7 +98,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
 .container { max-width: var(--col); margin: 0 auto; padding: 1.8em 1em 3em; }
 
 /* ---------- Profile / intro ---------- */
-.intro { display: grid; grid-template-columns: 1fr 250px; gap: 2.6em; align-items: start; margin-bottom: 1.6em; }
+.intro { display: grid; grid-template-columns: 1fr 285px; gap: 2.6em; align-items: start; margin-bottom: 1.6em; }
 .intro-body { min-width: 0; }
 
 /* ---------- Photo card: portrait + name + position + links ---------- */
@@ -114,7 +114,7 @@ hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
 }
 .portrait-ph svg { width: 34%; max-width: 66px; }
 .portrait-ph span { font-family: var(--mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; }
-.photo-info { padding: 15px 18px 17px; text-align: center; border-top: 1px solid var(--rule); }
+.photo-info { padding: 16px 26px 18px; text-align: center; border-top: 1px solid var(--rule); }
 .photo-name {
   font-variant: small-caps; letter-spacing: .08em; font-weight: 700;
   font-size: 1.2em; color: var(--text); margin-bottom: 3px;
@@ -213,6 +213,6 @@ section { margin-top: 2.2em; scroll-margin-top: 4.5em; }
    ===================================================================== */
 @media (max-width: 44em) {
   .intro { grid-template-columns: 1fr; gap: 1.6em; }
-  .photo-col { order: -1; max-width: 240px; margin: 0 auto; }
+  .photo-col { order: -1; max-width: 270px; margin: 0 auto; }
   .entry-when { float: none; display: block; margin: 0 0 .2em; }
 }
