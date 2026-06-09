@@ -24,7 +24,6 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Design language: near-black canvas, cosmic-orange phosphor accent, Bricolage
-Grotesque display / Hanken Grotesk body / JetBrains Mono technical type.
-Inspired by the substance of academic researcher pages and the cinematic polish
-of premium product sites.
+Design language: a plain, document-style academic page — near-white background,
+dark-red (maroon) accents, Lora serif body type, and a small simulated terminal.
+Inspired by the minimalist researcher-page aesthetic of nicholas.carlini.com.

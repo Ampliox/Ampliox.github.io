@@ -4,27 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 — Andres Samper</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080a'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' fill='%23ff6a2c' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#FEFEFE" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FEFEFE'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='22' font-weight='700' fill='%23A02020' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/style.css" />
   <style>
-    .nf { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--pad); gap: 1.3rem; }
-    .nf .code { font-family: var(--font-display); font-weight: 800; font-size: clamp(5rem, 20vw, 12rem); line-height: 1; letter-spacing: -.04em; color: var(--accent); text-shadow: 0 0 60px var(--glow); }
-    .nf p { color: var(--dim); font-family: var(--font-mono); font-size: .9rem; letter-spacing: .05em; max-width: 40ch; }
-    .nf .home { font-family: var(--font-mono); font-size: .82rem; border: 1px solid var(--line-2); padding: .8rem 1.4rem; border-radius: 100px; margin-top: 1rem; transition: all .25s var(--ease); }
-    .nf .home:hover { background: var(--accent); color: #1a0d05; border-color: var(--accent); }
+    .nf { max-width: 60em; margin: 0 auto; padding: 5em 1em; }
+    .nf h1 { font-size: 2.4em; margin: 0 0 .3em; }
+    .nf p { color: var(--muted); }
   </style>
 </head>
 <body>
-  <div class="bg-field"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-grain"></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">Andres Samper</a>
+      <nav class="nav"><a href="/">Home</a></nav>
+    </div>
+  </header>
   <main class="nf">
-    <div class="code">404</div>
-    <p>// segment not found — this path was never mapped.</p>
-    <a class="home" href="/">➜ cd ~ &nbsp;return home</a>
+    <h1>404 — Page not found</h1>
+    <p>The page you requested does not exist. <a href="/">Return to the home page.</a></p>
   </main>
 </body>
 </html>
