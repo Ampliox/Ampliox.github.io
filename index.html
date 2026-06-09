@@ -1,735 +1,356 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Reputation Checker</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-image: url("coolBG2.png");
-			background-size: cover;
-		}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andres Samper — Offensive Security Consultant</title>
+  <meta name="description" content="Andres Samper — Offensive Security Consultant & penetration tester. OSCP, HTB CPTS. Full-scope pentesting across networks, web apps, IoT, wireless, and cloud." />
+  <meta name="author" content="Andres Samper" />
+  <link rel="canonical" href="https://andressamper.com/" />
 
-		.container {
-			gap: 20px; <!-- 3em (fixes the last column) -->
-			max-width: 600px;
-			min-width: 50px;
-			margin-left:0px;
-			margin-right 10;
-			display: flex;
-			justify-content: center;
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Andres Samper — Offensive Security Consultant" />
+  <meta property="og:description" content="Penetration tester & offensive security consultant. OSCP, HTB CPTS. Full-scope pentesting across networks, web apps, IoT, wireless, and cloud." />
+  <meta property="og:url" content="https://andressamper.com/" />
+  <meta name="theme-color" content="#08080a" />
 
-		}
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2308080a'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' fill='%23ff6a2c' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
 
-		.mainCategory {
-			border: 0px solid #ccc;
-			padding: 10px;
-		}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-		.mainOptionsContainer {
-			gap: 20px; <!-- 3em (fixes the last column) -->
-			max-width: 600px;
-			min-width: 50px;
-			margin-left:0px;
-			margin-right 10;
-			display: flex;
-			justify-content: center;
-			align-items: flex-start; <!-- remove this to have all boxes the same size -->
-			<!-- flex-wrap: wrap; remove this line to get rid of wrapping -->
-		}
+  <link rel="stylesheet" href="assets/css/style.css" />
 
-		.optionsContainer {
-			gap: 20px; <!-- 3em (fixes the last column) -->
-			max-width: 600px;
-			min-width: 50px;
-			margin-left:0px;
-			margin-right 10;
-			display: flex;
-			justify-content: center;
-			align-items: flex-start; <!-- remove this to have all boxes the same size -->
-			<!-- flex-wrap: wrap; remove this line to get rid of wrapping -->
-		}
-
-		br {display:block;margin: 10px 0;}
-
-        p {color:white;}
-
-		button {margin-bottom:0.5px;}
-
-		.category {
-			border: 3px solid #ff4242;
-			background-color: #E5E4E2E0;
-			padding: 10px;
-			margin-left:0;
-			border-radius: 5px;
-			min-width: 175px;
-		}
-
-		.categoryExtra {
-			border:3px solid #10a7ff;
-			background-color: #E5E4E2E0;
-			padding: 10px;
-			border-radius: 5px;
-			min-width: 175px;
-		}
-
-		.category h3 {
-
-			margin-top: 0;
-			margin-right: 1000px;
-			display: flex;
-		}
-		.checkbox-group{
-			margin-bottom: 10px;
-			margin-right: 0px;
-		}
-
-		.label {
-			flex-grow:1;
-			margin-left: 0px;
-		}
-
-		.checkbox-container {
-			margin-right: 10px;
-		}
-
-		.references {
-			display: grid;
-			padding-top: 10px;
-			grid-gap:10px;
-			padding: 10px 20px;
-			margin-right: 100px;
-		}
-
-		.refcontainer {
-			//display: flex;
-			display: grid;
-			justify-content: flex-end;
-			grid-gap:10px;
-			min-width: 20px;
-
-
-		}
-
-		textarea {
-
-		}
-
-
-	</style>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andres Samper",
+    "jobTitle": "Offensive Security Consultant",
+    "url": "https://andressamper.com",
+    "email": "asamper2020@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL" },
+    "alumniOf": "University of South Florida",
+    "sameAs": [
+      "https://www.linkedin.com/in/andres-samper/",
+      "https://github.com/Ampliox"
+    ],
+    "knowsAbout": ["Penetration Testing","Active Directory","Web Application Security","Incident Response","Red Teaming","OSCP"]
+  }
+  </script>
 </head>
-<!--Created by the SOC to aid in faster gathering of Threat Intelligence-->
-<!--TO DO: Usernames, IPs, Domains, Emails, Addresses, Names, Breaches and Leaks-->
-<!--Updated 1/13/25-->
-<!--I might of broke it-->
-<!--Update 2/22/25: you did not close a function with ) around line 320 :( -->
-<!--Site works now-->
 <body>
-	<form id="siteForm">
-		<div class="container">
-			<div class="mainCategory">
-			<p><b>Supported Formats: IPv4, URLs, SHA-1, SHA-256, MD5</b></p>
-			<p for="inputData">Enter URLs, IP adresses, or hashes (Comma Seperated):</p>
-			<textarea id="inputData" rows="6" cols="55"></textarea><br><br>
-			<button type="button" id="openSites">Get Results</button>
-			<button type="button" onclick="unCheckAll()">Clear Checkboxes</button>
-			<button type="button" onclick="goPhish()">Phish</button>
-			<button type="button" onclick="favorites()">Favorites</button>
-			<button type="button" onclick="favoritesplus()">Favorites+</button>
-			</div>
+  <div class="bg-field"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-grain"></div>
 
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top"><span class="dot"></span>andres.samper</a>
+    <div class="nav-links">
+      <a href="#work">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+  </nav>
 
-		<div class="container">
-			<div class="categoryExtra">
-				<h3>Additional Tools</h3>
-				<button onclick="window.open('https://radar.cloudflare.com/scan', '_blank')">CloudFlare Radar</button>
-				<button onclick="window.open('https://urlquery.net', '_blank')">URL Query</button>
-				<button onclick="window.open('https://www.whatweb.net/', '_blank')">WhatWeb</button>
-				<button onclick="window.open('https://sslbl.abuse.ch/ja3-fingerprints/', '_blank')">JA3 Fingerprints</button>
-				<button onclick="window.open('https://centralops.net/co/', '_blank')">Central Ops</button>
-				<button onclick="window.open('https://urlscan.io/', '_blank')">URLScan</button>
-				<button onclick="window.open('https://inteltechniques.com/tools/')">IntelTechniques</button>
-				<button onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')">DO NOT CLICK</button>
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-meta reveal in">
+        <span>Tampa, FL · USA</span>
+        <span class="live"><i></i>Available for engagements</span>
+        <span>EST / UTC−5</span>
+      </div>
 
-				<br></br>
+      <h1>
+        <span class="l1">Andres</span>
+        <span class="l2">Samper.</span>
+      </h1>
 
-				<h3>References</h3>
-				<button onclick="window.open('https://gtfobins.github.io/', '_blank')">GTFOBins</button>
-				<button onclick="window.open('https://lolbas-project.github.io/', '_blank')">LOLBins</button>
-				<button onclick="window.open('https://wtfbins.wtf/', '_blank')">WTFbins</button>
-				<button onclick="window.open('https://hijacklibs.net/', '_blank')">HijackLibs</button>
-				<button onclick="window.open('https://www.exploit-db.com/', '_blank')">ExploitDB</button>
-				<button onclick="window.open('https://threathunterplaybook.com/intro.html', '_blank')">Threat Hunter</button>
-				<button onclick="window.open('http://ref.x86asm.net/coder32.html', '_blank')">x86 ASM Ref</button>
-				<button onclick="window.open('https://aadinternals.com/osint/', '_blank')">AADInternals</button>
-				<button onclick="window.open('https://book.hacktricks.wiki/en/index.html', '_blank')">HackTricks</button>
-			</div>
-		</div>
-	</div>
+      <p class="tag">
+        <b>Offensive Security Consultant</b> &amp; penetration tester. I break into networks,
+        web apps, IoT, wireless, and cloud — then write the report that makes them
+        <b>impossible to break into next time</b>.
+      </p>
 
-	<br></br>
+      <!-- terminal -->
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+          <span class="ttitle">root@andressamper:~</span>
+        </div>
+        <div class="terminal-body" id="term"></div>
+      </div>
 
-	<div class="mainOptionsContainer">
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          View the work
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/Ampliox" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a11 11 0 0 0-3.5 21.4c.55.1.75-.24.75-.53v-2C6.2 20.5 5.55 18.7 5.55 18.7c-.36-.92-.88-1.16-.88-1.16-.72-.5.05-.49.05-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .29.2.63.76.52A11 11 0 0 0 12 1Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/andres-samper/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.34 18.34V9.96H5.56v8.38h2.78ZM6.95 8.72a1.61 1.61 0 1 0 0-3.22 1.61 1.61 0 0 0 0 3.22Zm11.4 9.62v-4.6c0-2.46-1.31-3.6-3.06-3.6a2.64 2.64 0 0 0-2.4 1.32v-1.13H10.1c.04.78 0 8.38 0 8.38h2.78v-4.68c0-.25.02-.5.09-.68.2-.5.66-1.02 1.42-1.02.99 0 1.39.76 1.39 1.87v4.51h2.78Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
 
-		<div class="optionsContainer">
-			<div class="category">
-				<label><b>URLs</b></label>
-				<div class="checkbox-group">
-				<br><br>
-				<input type="checkbox" name="site" id="site1" class="label"></input>
-				<label for="site1" width=100px >VirusTotal</label>
-				<br><br>
-				<input type="checkbox" name="site2" id="site2" class="label"></input>
-				<label for="site2">IBM X-Force</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site3" class="label"></input>
-				<label for="site3">AlienVault</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site4" class="label"></input>
-				<label for="site4">Talos Intelligence</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site23" class="label"></input>
-				<label for="site23">ThreatFox IOCs</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site24" class="label"></input>
-				<label for="site24">Web Check</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site26" class="label"></input>
-				<label for="site26">Wayback Machine</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site29" class="label"></input>
-				<label for="site29">ScamAdvisor</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site30" class="label"></input>
-				<label for="site30">Norton Safeweb</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site31" class="label"></input>
-				<label for="site31">Crt.sh</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site32" class="label"></input>
-				<label for="site32">BuiltWith</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site33" class="label"></input>
-				<label for="site33">Whoxy</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site34" class="label"></input>
-				<label for="site34">Sucuri</label>
-				</div>
-			</div>
-		</div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>SCROLL</span>
+      <span class="bar"></span>
+    </div>
+  </header>
 
-		<div class="optionsContainer">
-			<div class="category">
-				<label><b>IPs</b></label>
-				<div class="checkbox-group">
-				<br><br>
-				<input type="checkbox" name="site" id="site5" class="label"></input>
-				<label for="site5">VirusTotal</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site6" class="label"></input>
-				<label for="site6">AbuseIPDB</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site7" class="label"></input>
-				<label for="site7">Spur</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site11" class="label"></input>
-				<label for="site11">WHOIS</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site12" class="label"></input>
-				<label for="site12">Scamalytics</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site13" class="label"></input>
-				<label for="site13">AlienVault</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site14" class="label"></input>
-				<label for="site14">Shodan</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site15" class="label"></input>
-				<label for="site15">IBM X-Force</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site16" class="label"></input>
-				<label for="site16">Project Honeypot</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site17" class="label"></input>
-				<label for="site17">Censys</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site18" class="label"></input>
-				<label for="site18">SpamCop</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site19" class="label"></input>
-				<label for="site19">MX-Toolbox Blacklist</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site20" class="label"></input>
-				<label for="site20">GreyNoise</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site25" class="label"></input>
-				<label for="site25">Talos Intelligence</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site27" class="label"></input>
-				<label for="site27">SpamHaus</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site28" class="label"></input>
-				<label for="site28">ThreatFox IOCs</label>
-				</div>
-			</div>
-		</div>
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="strip" aria-hidden="true">
+    <div class="marquee">
+      <span>BloodHound</span><span>Impacket</span><span>Burp Suite</span><span>Metasploit</span><span>PowerView</span><span>CrowdStrike EDR</span><span>Nessus</span><span>Elastic</span><span>InsightVM</span><span>Microsoft Sentinel</span>
+      <span>BloodHound</span><span>Impacket</span><span>Burp Suite</span><span>Metasploit</span><span>PowerView</span><span>CrowdStrike EDR</span><span>Nessus</span><span>Elastic</span><span>InsightVM</span><span>Microsoft Sentinel</span>
+    </div>
+  </div>
 
-		<div class="optionsContainer">
-			<div class="category">
-				<label><b>Hashes</b></label>
-				<div class="checkbox-group">
-				<br><br>
-				<input type="checkbox" name="site" id="site8" class="label"></input>
-				<label for="site8">VirusTotal</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site9" class="label"></input>
-				<label for="site9">IBM X-Force</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site10" class="label"></input>
-				<label for="site10">AlienVault</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site21" class="label"></input>
-				<label for="site21">ThreatFox IOCs</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site22" class="label"></input>
-				<label for="site22">Joe's Sandbox</label>
-				</div>
-			</div>
-		</div>
+  <!-- ===================== STATEMENT ===================== -->
+  <section class="statement wrap">
+    <p data-statement>
+      Two sides of the same fight. I&rsquo;ve sat on the blue team triaging incidents — and now I&rsquo;m on the red team building the attacks they have to stop.
+    </p>
+  </section>
 
-		<div class="optionsContainer">
-			<div class="category">
-				<label><b>Email Addresses</b></label>
-				<div class="checkbox-group" >
-				<br><br>
-				<input type="checkbox" name="site" id="site35" class="label"></input>
-				<label for="site35">HudsonRock</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site36" class="label"></input>
-				<label for="site36">PasteLeakCheck</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site37" class="label"></input>
-				<label for="site37">IntelligenceX</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site38" class="label"></input>
-				<label for="site38">CleanTalk</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site39" class="label"></input>
-				<label for="site39">LeakIX</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site40" class="label"></input>
-				<label for="site40">HunterIO</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site41" class="label"></input>
-				<label for="site41">OCCRP</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site42" class="label"></input>
-				<label for="site42">Whoisology</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site43" class="label"></input>
-				<label for="site43">Whoxy</label>
-				</div>
-			</div>
-		</div>
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="work" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 — Experience</span>
+      <h2>From the SOC floor to full-scope offensive engagements.</h2>
+      <p>A path through both halves of security operations — defending in real time, then learning to think like the adversary.</p>
+    </div>
 
-		<div class="optionsContainer">
-			<div class="category">
-				<label><b>Phone Numbers</b></label>
-				<div class="checkbox-group" >
-				<br><br>
-				<input type="checkbox" name="site" id="site44" class="label"></input>
-				<label for="site44">AdvBackgroundCheck</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site45" class="label"></input>
-				<label for="site45">CyberBckGrdCheck</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site46" class="label"></input>
-				<label for="site46">InfoTracer</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site47" class="label"></input>
-				<label for="site47">TruePeopleSearch</label>
-				<br><br>
-				<input type="checkbox" name="site" id="site48" class="label"></input>
-				<label for="site48">WhitePages</label>
-				</div>
-			</div>
-		</div>
+    <div class="xp-list">
+      <article class="xp reveal">
+        <div class="xp-left">
+          <div class="xp-when">Nov 2025 — Present</div>
+          <h3 class="xp-role">Offensive Security Consultant</h3>
+          <p class="xp-co"><b>HALOCK Security Labs</b><span class="loc">Remote</span></p>
+        </div>
+        <ul class="xp-points">
+          <li>Leading development of an <b>AI-driven penetration testing platform</b> powering a new continuous-testing service offering.</li>
+          <li>Conducting <b>full-scope penetration tests</b> across networks, web applications, IoT, wireless systems, and cloud environments.</li>
+          <li>Producing professional reports with evidence, severity ratings, risk summaries, and validated findings.</li>
+          <li>Delivering clear, actionable remediation guidance aligned with real business risk.</li>
+        </ul>
+      </article>
 
+      <article class="xp reveal">
+        <div class="xp-left">
+          <div class="xp-when">Mar 2024 — Nov 2025</div>
+          <h3 class="xp-role">SOC Analyst Intern</h3>
+          <p class="xp-co"><b>Geographic Solutions</b><span class="loc">Palm Harbor, FL</span></p>
+        </div>
+        <ul class="xp-points">
+          <li>Triaged incidents across <b>SIEM, EDR, and SOAR</b> with an average investigation time under <b>25 minutes</b>.</li>
+          <li>Tuned SIEM detection logic to cut the <b>false-positive rate by 32%</b>.</li>
+          <li>Authored Standard Operating Procedures (SOPs) for future InfoSec personnel.</li>
+          <li>Performed forensic analysis and artifact gathering on quarantined devices; monitored firewall logs to suppress bot activity.</li>
+          <li>Trained new hires on CrowdStrike EDR, Microsoft Defender, and Elastic Search.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-	</div>
+  <!-- ===================== CERTIFICATIONS ===================== -->
+  <section id="certs" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 — Credentials</span>
+      <h2>Certifications earned the hard way.</h2>
+      <p>Hands-on, exam-proctored credentials — not multiple-choice trivia. Each one is a machine, or a network, actually compromised.</p>
+    </div>
 
+    <div class="cert-grid">
+      <div class="cert reveal" data-d="1">
+        <span class="num">// 01</span>
+        <span class="badge">FLAGSHIP</span>
+        <div><div class="name">OSCP</div><div class="full">Offensive Security<br/>Certified Professional</div></div>
+      </div>
+      <div class="cert reveal" data-d="1">
+        <span class="num">// 02</span>
+        <div><div class="name">CPTS</div><div class="full">HTB Certified<br/>Penetration Testing Specialist</div></div>
+      </div>
+      <div class="cert reveal" data-d="2">
+        <span class="num">// 03</span>
+        <div><div class="name">PIPA</div><div class="full">TCM Practical IoT<br/>Pentest Associate</div></div>
+      </div>
+      <div class="cert reveal" data-d="2">
+        <span class="num">// 04</span>
+        <div><div class="name">Security+</div><div class="full">CompTIA<br/>Security+</div></div>
+      </div>
+      <div class="cert reveal" data-d="3">
+        <span class="num">// 05</span>
+        <div><div class="name">InsightVM</div><div class="full">Rapid7 Certified<br/>Administrator</div></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===================== CAPABILITIES ===================== -->
+  <section id="capabilities" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 — Capabilities</span>
+      <h2>Offense and defense, end to end.</h2>
+      <p>The full kill-chain — from initial access and Active Directory takeover to detection, response, and hardening.</p>
+    </div>
 
+    <div class="cap-grid">
+      <div class="cap reveal" data-d="1">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2 3 7v6c0 5 3.8 8.5 9 9 5.2-.5 9-4 9-9V7l-9-5Z"/><path d="m9 12 2 2 4-4"/></svg>Offensive</h3>
+        <ul>
+          <li>AD Enumeration &amp; Attacks</li>
+          <li>Windows Privesc</li>
+          <li>Linux Privesc</li>
+          <li>Web App Pentesting</li>
+          <li>OWASP Top 10</li>
+          <li>Red Teaming</li>
+          <li>Tool Development</li>
+          <li>Risk Reporting</li>
+        </ul>
+      </div>
+      <div class="cap reveal" data-d="2">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Defensive</h3>
+        <ul>
+          <li>Incident Response</li>
+          <li>SIEM Operations</li>
+          <li>Network Traffic Analysis</li>
+          <li>Log Analysis</li>
+          <li>Vulnerability Management</li>
+          <li>Detection Engineering</li>
+          <li>Digital Forensics</li>
+        </ul>
+      </div>
+      <div class="cap reveal" data-d="3">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M2 20h20M8 9l2 2-2 2M13 13h3"/></svg>Toolkit</h3>
+        <ul>
+          <li>Impacket</li>
+          <li>BloodHound</li>
+          <li>PowerView</li>
+          <li>Metasploit</li>
+          <li>Burp Suite</li>
+          <li>Nessus</li>
+          <li>CrowdStrike EDR</li>
+          <li>Defender &amp; Sentinel</li>
+          <li>Cisco FMC</li>
+          <li>Elastic</li>
+          <li>InsightVM</li>
+          <li>Qualys</li>
+        </ul>
+      </div>
+      <div class="cap reveal" data-d="4">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>Code</h3>
+        <ul>
+          <li>Python</li>
+          <li>Bash</li>
+          <li>PowerShell</li>
+          <li>Regex</li>
+          <li>Automation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Selected Work</span>
+      <h2>Things I&rsquo;ve built.</h2>
+    </div>
 
-	</form>
-	<script>
-		function checkInputType(input){
-			const trimmedInput = input.trim();
+    <article class="proj reveal">
+      <div class="proj-body">
+        <span class="ptag">OSINT · 2024</span>
+        <h3>Reputation Checker</h3>
+        <p>An OSINT tool that accelerates online-reputation gathering for IPs, URLs, file hashes, email addresses, and phone numbers. Regular expressions classify each input and route it straight to the right reputation database — VirusTotal, Cisco Talos, IBM X-Force, and more — so an analyst goes from raw indicator to verdict in seconds.</p>
+        <div class="proj-tools">
+          <span>Python</span><span>Regex</span><span>VirusTotal</span><span>Cisco Talos</span><span>IBM X-Force</span>
+        </div>
+        <a class="proj-link" href="https://github.com/Ampliox" target="_blank" rel="noopener">
+          View on GitHub
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+      <div class="proj-visual">
+        <div class="code-card">
+<span class="c-com"># classify &amp; route any indicator</span><br/>
+<span class="c-key">def</span> lookup(ioc):<br/>
+&nbsp;&nbsp;<span class="c-key">if</span> is_ip(ioc):&nbsp;&nbsp;&nbsp;<span class="c-key">return</span> talos(ioc)<br/>
+&nbsp;&nbsp;<span class="c-key">if</span> is_hash(ioc): <span class="c-key">return</span> virustotal(ioc)<br/>
+&nbsp;&nbsp;<span class="c-key">if</span> is_email(ioc):<span class="c-key">return</span> xforce(ioc)<br/>
+&nbsp;&nbsp;<span class="c-key">return</span> <span class="c-str">"unknown indicator"</span><br/>
+<br/>
+<span class="c-com">&gt; verdict: </span><span class="c-str">"malicious"</span> <span class="c-com">(94% conf.)</span>
+        </div>
+      </div>
+    </article>
+  </section>
 
-			const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/i; //HTTP/s or Domain
-			const ipPattern = /^^(?:\d{1,3}\.){3}\d{1,3}$/; //IPv4
-			const hashPattern = /^[a-fA-F0-9]{32}$|^[a-fA-F0-9]{40}$|^[a-fA-F0-9]{64}$/; // MD5, SHA-1, SHA-256
-			const emailPattern = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/; //Emails
-			const phonePattern = /(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/g;
+  <!-- ===================== COMPETITION + EDUCATION ===================== -->
+  <section class="wrap">
+    <div class="split">
+      <div class="panel reveal" data-d="1">
+        <span class="when">2025 — 2026</span>
+        <span class="eyebrow">Competition</span>
+        <h3>USF CyberHerd</h3>
+        <div class="sub">Competition Team Member · Nationally Ranked CTF Team</div>
+        <p>Competing in national collegiate cybersecurity competitions with USF&rsquo;s premier team — capture-the-flag events, penetration testing, and red-team exercises spanning network security, offensive tactics, and threat mitigation.</p>
+      </div>
 
+      <div class="panel reveal" data-d="2">
+        <span class="when">Dec 2025</span>
+        <span class="eyebrow">Education</span>
+        <h3>B.S. Cybersecurity</h3>
+        <div class="sub">University of South Florida · Tampa, FL</div>
+        <p>Bachelor of Science in Cybersecurity — a foundation across offensive and defensive disciplines, secure systems, and applied security operations.</p>
+      </div>
+    </div>
+  </section>
 
-			if(urlPattern.test(trimmedInput)){
-				return 'URL';
-			}
-			else if (ipPattern.test(trimmedInput)){
-				const octet = trimmedInput.split('.').map(Number);
-				const isValidIP = octet.every(octet => octet >= 0 && octet <= 255);
-				return 'IP';
-			} else if (hashPattern.test(trimmedInput)) {
-				return 'Hash';
-			} else if (emailPattern.test(trimmedInput)){
-				return 'Email';
-			} else if (phonePattern.test(trimmedInput)) {
-				return 'Phone';
-			}
-			else {
-				return 'Error';
-			}
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="contact wrap">
+    <span class="eyebrow reveal">05 — Get in touch</span>
+    <h2 class="reveal" data-d="1"><a href="mailto:asamper2020@gmail.com">Let&rsquo;s talk security.</a></h2>
+    <p class="lead reveal" data-d="2">Engagement, collaboration, or just trading notes on the latest AD attack path — my inbox is open.</p>
+    <div class="contact-links reveal" data-d="2">
+      <a class="btn btn-primary" href="mailto:asamper2020@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+        asamper2020@gmail.com
+      </a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/andres-samper/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/Ampliox" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn btn-ghost" href="assets/Andres_Samper_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+    </div>
+  </section>
 
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="fbrand"><span class="dot"></span>andres.samper</span>
+      <div class="fnav">
+        <a href="#work">Experience</a>
+        <a href="#certs">Certs</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <span class="meta">© 2026 Andres Samper · Tampa, FL · built &amp; broken in the terminal</span>
+    </div>
+  </footer>
 
-		}
-
-		function unCheckAll() {
-			const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-			checkboxes.forEach(checkbox => checkbox.checked = false);
-		}
-
-		function redirect(val) {
-			window.location.href = val;
-		}
-
-		function goPhish() {
-			unCheckAll()
-			//URLs
-			document.getElementById('site1').checked=true;
-			document.getElementById('site2').checked=true;
-			document.getElementById('site4').checked=true;
-			//IPs
-			document.getElementById('site6').checked=true;
-			document.getElementById('site25').checked=true;
-			document.getElementById('site19').checked=true;
-
-			fetchReputation()
-		}
-
-		function favorites() {
-			unCheckAll()
-			//URLs
-			document.getElementById('site1').checked=true;
-			document.getElementById('site2').checked=true;
-			document.getElementById('site3').checked=true;
-			document.getElementById('site4').checked=true;
-			//IPs
-			document.getElementById('site6').checked=true;
-			document.getElementById('site5').checked=true;
-			document.getElementById('site15').checked=true;
-			document.getElementById('site25').checked=true;
-			//Hashes
-			document.getElementById('site8').checked=true;
-			document.getElementById('site9').checked=true;
-			document.getElementById('site10').checked=true;
-			//Emails
-			document.getElementById('site35').checked=true;
-			document.getElementById('site42').checked=true;
-			//Phone Numbers
-			document.getElementById('site45').checked=true;
-			document.getElementById('site47').checked=true;
-			fetchReputation()
-		}
-
-		function favoritesplus() {
-			unCheckAll()
-			//URLs
-			document.getElementById('site1').checked=true;
-			document.getElementById('site2').checked=true;
-			document.getElementById('site3').checked=true;
-			document.getElementById('site4').checked=true;
-			document.getElementById('site23').checked=true;
-			document.getElementById('site24').checked=true;
-			document.getElementById('site29').checked=true;
-			document.getElementById('site30').checked=true;
-			document.getElementById('site33').checked=true;
-			document.getElementById('site34').checked=true;
-			//IPs
-			document.getElementById('site6').checked=true;
-			document.getElementById('site5').checked=true;
-			document.getElementById('site15').checked=true;
-			document.getElementById('site25').checked=true;
-			document.getElementById('site7').checked=true;
-			document.getElementById('site12').checked=true;
-			document.getElementById('site13').checked=true;
-			document.getElementById('site16').checked=true;
-			document.getElementById('site17').checked=true;
-			document.getElementById('site18').checked=true;
-			document.getElementById('site19').checked=true;
-			document.getElementById('site20').checked=true;
-			document.getElementById('site27').checked=true;
-			document.getElementById('site28').checked=true;
-			//Hashes
-			document.getElementById('site8').checked=true;
-			document.getElementById('site9').checked=true;
-			document.getElementById('site10').checked=true;
-			document.getElementById('site21').checked=true;
-			document.getElementById('site22').checked=true;
-			//Emails
-			document.getElementById('site35').checked=true;
-			document.getElementById('site36').checked=true;
-			document.getElementById('site37').checked=true;
-			document.getElementById('site38').checked=true;
-			document.getElementById('site39').checked=true;
-			document.getElementById('site40').checked=true;
-			document.getElementById('site41').checked=true;
-			document.getElementById('site42').checked=true;
-			document.getElementById('site43').checked=true;
-			document.getElementById('site44').checked=true;
-			document.getElementById('site45').checked=true;
-
-
-			fetchReputation()
-		}
-
-		function fetchReputation() {
-			const inputData = document.getElementById('inputData').value;
-			const items = inputData.split(',');
-
-			items.forEach(item => {
-				const category = checkInputType(item);
-				const trimmedItem = item.trim();
-
-				switch (category) {
-					case 'URL':
-						url = trimmedItem;
-						url = url.replace(/^https?:\/\//, '');
-						if (document.getElementById("site1").checked) {
-							const url2OpenVT = 'https://www.virustotal.com/gui/domain/' + url;
-							window.open(url2OpenVT, '_blank');
-						}
-						if (document.getElementById("site2").checked) {
-							const url2OpenXForce = 'https://exchange.xforce.ibmcloud.com/url/' + url;
-							window.open(url2OpenXForce, '_blank');
-						}
-						if (document.getElementById("site3").checked) {
-							const url2OpenAlienVault = 'https://otx.alienvault.com/indicator/domain/' + url;
-							window.open(url2OpenAlienVault, '_blank');
-						}
-						if (document.getElementById("site4").checked) {
-							const url2OpenTalos = 'https://www.talosintelligence.com/reputation_center/lookup?search=' + url;
-							window.open(url2OpenTalos, '_blank');
-						}
-						if (document.getElementById("site23").checked) {
-							const url2OpenThreatFox = 'https://threatfox.abuse.ch/browse.php?search=' + url;
-							window.open(url2OpenThreatFox, '_blank');
-						}
-						if (document.getElementById("site24").checked) {
-							const url2OpenWebCheck = 'https://web-check.as93.net/check/https%3A%2F%2F' + url;
-							window.open(url2OpenWebCheck, '_blank');
-						}
-						if (document.getElementById("site26").checked) {
-							const url2OpenWayback = 'https://web.archive.org/web/20240000000000*/' + url;
-							window.open(url2OpenWayback, '_blank');
-						}
-						if (document.getElementById("site29").checked) {
-							const url2OpenScam = 'https://www.scamadviser.com/check-website/' + url;
-							window.open(url2OpenScam, '_blank');
-						}
-						if (document.getElementById("site30").checked) {
-							const url2OpenNorton = 'https://safeweb.norton.com/report?url=' + url;
-							window.open(url2OpenNorton, '_blank');
-						}
-						if (document.getElementById("site31").checked) {
-							const url2OpenBuiltWith = 'https://builtwith.com/?q=' + url;
-							window.open(url2OpenBuiltWith, '_blank');
-						}
-						if (document.getElementById("site32").checked) {
-							const url2OpenCrt = 'https://crt.sh/?q=' + url;
-							window.open(url2OpenCrt, '_blank');
-						}
-						if (document.getElementById("site33").checked) {
-							const url2Whoxy = 'https://www.whoxy.com/' + url;
-							window.open(url2OpenCrt, '_blank');
-						}
-						if (document.getElementById("site34").checked) {
-							const url2Whoxy = 'https://sitecheck.sucuri.net/results/' + url;
-							window.open(url2OpenCrt, '_blank');
-						}
-						break;
-					case 'IP':
-						ip = trimmedItem;
-						if (document.getElementById("site5").checked) {
-							const ip2OpenVT = 'https://www.virustotal.com/gui/ip-address/' + ip;
-							window.open(ip2OpenVT, '_blank');
-						}
-						if (document.getElementById("site6").checked) {
-							const ip2OpenIPDB = 'https://www.abuseipdb.com/check/' + ip;
-							window.open(ip2OpenIPDB, '_blank');
-						}
-						if (document.getElementById("site7").checked) {
-							const ip2OpenSpur = 'https://app.spur.us/context?q=' + ip;
-							window.open(ip2OpenSpur, '_blank');
-						}
-						if (document.getElementById("site11").checked) {
-							const ip2OpenWHOIS = 'https://search.arin.net/rdap/?query=' + ip;
-							window.open(ip2OpenWHOIS, '_blank');
-						}
-						if (document.getElementById("site12").checked) {
-							const ip2OpenScamalytics = 'https://scamalytics.com/ip/' + ip;
-							window.open(ip2OpenScamalytics, '_blank');
-						}
-						if (document.getElementById("site13").checked) {
-							const ip2OpenAlienVault = 'https://otx.alienvault.com/indicator/ip/' + ip;
-							window.open(ip2OpenAlienVault, '_blank');
-						}
-						if (document.getElementById("site14").checked) {
-							const ip2OpenShodan = 'https://www.shodan.io/search?query=' + ip + '&ref=os';
-							window.open(ip2OpenShodan, '_blank');
-						}
-						if (document.getElementById("site15").checked) {
-							const ip2OpenXForce = 'https://exchange.xforce.ibmcloud.com/ip/' + ip;
-							window.open(ip2OpenXForce, '_blank');
-						}
-						if (document.getElementById("site16").checked) {
-							const ip2OpenHoneyPot = 'https://www.projecthoneypot.org/ip_' + ip;
-							window.open(ip2OpenHoneyPot, '_blank');
-						}
-						if (document.getElementById("site17").checked) {
-							const ip2OpenCensys = 'https://search.censys.io/search?resource=hosts&q=' + ip;
-							window.open(ip2OpenCensys, '_blank');
-						}
-						if (document.getElementById("site18").checked) {
-							const ip2OpenSpamCop = 'https://www.spamcop.net/w3m?action=checkblock&ip=' + ip;
-							window.open(ip2OpenSpamCop, '_blank');
-						}
-						if (document.getElementById("site19").checked) {
-							const ip2OpenMXBlackList = 'https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' + ip + '&run=toolpage';
-							window.open(ip2OpenMXBlackList, '_blank');
-						}
-						if (document.getElementById("site20").checked) {
-							const ip2OpenGreyNoise = 'https://viz.greynoise.io/ip/' + ip;
-							window.open(ip2OpenGreyNoise, '_blank');
-						}
-						if (document.getElementById("site25").checked) {
-							const ip2OpenTalos = 'https://www.talosintelligence.com/reputation_center/lookup?search=' + ip;
-							window.open(ip2OpenTalos, '_blank');
-						}
-						if (document.getElementById("site27").checked) {
-							const ip2OpenSpamHaus = 'https://check.spamhaus.org/results/?query=' + ip;
-							window.open(ip2OpenSpamHaus, '_blank');
-						}
-						if (document.getElementById("site28").checked) {
-							const ip2OpenFox = 'https://threatfox.abuse.ch/browse.php?search=' + ip;
-							window.open(ip2OpenFox, '_blank');
-						}
-						break;
-					case 'Hash':
-						hash = trimmedItem;
-						if (document.getElementById("site8").checked) {
-							const hash2OpenVT = 'https://www.virustotal.com/gui/file/' + hash;
-							window.open(hash2OpenVT, '_blank');
-						}
-						if (document.getElementById("site9").checked) {
-							const hash2OpenXForce = 'https://exchange.xforce.ibmcloud.com/malware/' + hash;
-							window.open(hash2OpenXForce, '_blank');
-						}
-						if (document.getElementById("site10").checked) {
-							const hash2OpenAlienVault = 'https://otx.alienvault.com/indicator/file/' + hash;
-							window.open(hash2OpenAlienVault, '_blank');
-						}
-						if (document.getElementById("site21").checked) {
-							const hash2OpenTFox = 'https://threatfox.abuse.ch/browse.php?search=' + hash;
-							window.open(hash2OpenTFox, '_blank');
-						}
-						if (document.getElementById("site22").checked) {
-							const hash2OpenJoeBox = 'https://www.joesandbox.com/search?q=' + hash;
-							window.open(hash2OpenJoeBox, '_blank');
-						}
-						break;
-					case 'Email':
-						email = trimmedItem;
-						if (document.getElementById("site35").checked) {
-							const email2OpenHudson = 'https://cavalier.hudsonrock.com/api/json/v2/preview/search-by-login/osint-tools?email=' + email;
-							window.open(email2OpenHudson, '_blank');
-						}
-						if (document.getElementById("site36").checked) {
-							const email2OpenPasteLeakCheck = 'https://psbdmp.ws/api/search/' + email;
-							window.open(email2OpenPasteLeakCheck, '_blank');
-						}
-						if (document.getElementById("site37").checked) {
-							const email2openIntelligenceX = 'https://intelx.io/?s=' + email;
-							window.open(email2openIntelligenceX, '_blank');
-						}
-						if (document.getElementById("site38").checked) {
-							const email2openCleanTalk = 'https://cleantalk.org/email-checker/' + email;
-							window.open(email2openCleanTalk, '_blank');
-						}
-						if (document.getElementById("site39").checked) {
-							const email2openLeak4 = 'https://leakix.net/search?scope=leak&q=%22' + email;
-							window.open(email2openLeak4, '_blank');
-						}
-						if (document.getElementById("site40").checked) {
-							const email2OpenHunterIO = 'https://hunter.io/email-verifier/' + email;
-							window.open(email2OpenHunterIO, '_blank');
-						}
-						if (document.getElementById("site41").checked) {
-							const email2openOCCRP = 'https://data.occrp.org/search?q=' + email;
-							window.open(email2openOCCRP, '_blank');
-						}
-						if (document.getElementById("site42").checked) {
-							const email2openWhoisology = 'https://whoisology.com/email/' + email;
-							window.open(email2openWhoisology, '_blank');
-						}
-						if (document.getElementById("site43").checked) {
-							const email2openwhoxy = 'https://www.whoxy.com/search.php?email=' + email;
-							window.open(email2openwhoxy, '_blank');
-						}
-						if (document.getElementById("site44").checked) {
-							const email2openThatsthem = 'https://thatsthem.com/email/' + email;
-							window.open(email2openThatsthem, '_blank');
-						}
-						if (document.getElementById("site45").checked) {
-							const email2opentruepeople = 'https://www.truepeoplesearch.com/resultemail?email=' + email;
-							window.open(email2opentruepeople, '_blank');
-						}
-						break;
-					case 'Phone':
-						phone = trimmedItem;
-
-						if (document.getElementById("site44").checked) {
-							const phone2OpenAdvBackgroundCheck = 'https://www.advancedbackgroundchecks.com/' + phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
-							window.open(phone2OpenAdvBackgroundCheck, '_blank');
-						}
-						if (document.getElementById("site45").checked) {
-							const phone2OpenCyber = 'https://www.cyberbackgroundchecks.com/phone/' + phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
-							window.open(phone2OpenCyber, '_blank');
-						}
-						if (document.getElementById("site46").checked) {
-							const phone2OpenInfoTracer = 'https://infotracer.com/phone-lookup/results/?phone=' + phone;
-							window.open(phone2OpenInfoTracer, '_blank');
-						}
-						if (document.getElementById("site47").checked) {
-							const phone2OpenTruePeople = 'https://www.truepeoplesearch.com/results?phoneno=' + phone;
-							window.open(phone2OpenTruePeople, '_blank');
-						}
-						if (document.getElementById("site48").checked) {
-							const phone2OpenWhitePages = 'https://www.whitepages.com/phone/1-' + phone;
-							window.open(phone2OpenWhitePages, '_blank');
-						}
-						break;
-					default:
-						alert('Invalid data type:' + trimmedItem);
-						break;
-			}
-			});
-		}
-		window.onload = function() {
-		document.getElementById('openSites').addEventListener('click', fetchReputation);
-		}
-	</script>
+  <script src="assets/js/main.js"></script>
 </body>
+</html>
