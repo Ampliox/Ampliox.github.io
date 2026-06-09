@@ -36,7 +36,7 @@
   const stmt = document.querySelector("[data-statement]");
   if (stmt) {
     const text = stmt.textContent.trim();
-    const hot = new Set(["red", "team", "attacks", "blue"]);
+    const hot = new Set(["defending", "offensive"]);
     stmt.innerHTML = text
       .split(/(\s+)/)
       .map((tok) => {
@@ -73,9 +73,9 @@
       { t: 'whoami', kind: "cmd" },
       { t: "andres samper — offensive security consultant", kind: "out" },
       { t: "cat ./focus.txt", kind: "cmd" },
-      { t: "full-scope pentesting · red teaming · AD attacks", kind: "out" },
-      { t: "./engage --status", kind: "cmd" },
-      { t: "[ ready ] available for new engagements", kind: "ok" },
+      { t: "full-scope penetration testing · red teaming", kind: "out" },
+      { t: "ls ./certifications", kind: "cmd" },
+      { t: "OSCP   CPTS   PIPA   Security+   InsightVM", kind: "out" },
     ];
 
     const render = (done, partial, showCursor) => {
